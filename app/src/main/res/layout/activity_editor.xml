@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".view.activities.EditorActivity">
+
+    <!-- Overview category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/fragrance" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+
+            <EditText
+                android:id="@+id/edit_fragrance_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_fragrance_name"
+                android:inputType="textCapWords" />
+
+            <EditText
+                android:id="@+id/edit_fragrance_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_fragrance_price"
+                android:inputType="number" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:gravity="start"
+            style="@style/CategoryStyle"
+            android:text="Gender" />
+
+        <RadioGroup
+            android:id="@+id/rg_editor_gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_editor_male"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/rb_editor_female"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/female" />
+
+            <RadioButton
+                android:id="@+id/rb_editor_unisex"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/unisex" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/rg_editor_quantity_mode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_editor_do_naught"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/do_naught" />
+
+            <RadioButton
+                android:id="@+id/rb_editor_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_to_stock" />
+
+            <RadioButton
+                android:id="@+id/rb_editor_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sell_from_stock" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/et_edit_fragrance_quantity"
+            style="@style/EditorFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/quantity"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
+
+</LinearLayout>
