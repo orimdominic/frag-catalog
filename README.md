@@ -23,10 +23,12 @@ with a prospective customer.
 
 The app use Android Room SQLite database to store data locally.
 
-Bugs and impending improvements
+Bugs and Impending Improvements
 
 Bug: Two fragrances with exactly the same names can be saved.
 This should be prevented.
 
 Improvement: Settings should be added for sorting fragrances by name, 
 price, quantity sold and other properties.
+Improvement: The toolbar could be moved to the bottom of the screen for
+better user experience.
