@@ -6,10 +6,12 @@
 
 **The app allows the user to perform basic CRUD operations which include:**
 
-*	Creating  fragrances with the properties name, price, quantity in stock and gender
+*	Creating  fragrances with the properties:
+	name, wholesale price, retail price, quantity in stock and gender
 *	Viewing a list of all the fragrances saved. The list shows the name, price, gender,
 	quantity sold and quantity remaining in stock
-*	Updating fragrance properties such as name, price, quantity sold, quantity remaining in stock and gender
+*	Updating fragrance properties such as name, wholesale price, 
+	retail price, quantity in stock and gender
 *	Delete fragrances.
 
 **The app also allows the user to **
