@@ -88,19 +88,6 @@ public class CatalogAdapter
     public void onBindViewHolder(@NonNull FragrancesViewHolder holder, int position) {
         FragranceEntry fragrance = filteredList.get(position);
 
-        holder.tvNumber.setText(String.valueOf(position + 1));
-        holder.tvName.setText(fragrance.getName());
-        holder.tvPrice.setText(String.valueOf(fragrance.getPrice()));
-        if (fragrance.getQuantityInStock() == 1) {
-            holder.tvQuantityInStock.setText(String.valueOf(fragrance.getQuantityInStock()) + " piece in stock");
-        } else {
-            holder.tvQuantityInStock.setText(String.valueOf(fragrance.getQuantityInStock()) + " pieces in stock");
-        }
-        if (fragrance.getQuantitySold() == 1) {
-            holder.tvQuantitySold.setText(String.valueOf(fragrance.getQuantitySold()) + " piece sold");
-        } else {
-            holder.tvQuantitySold.setText(String.valueOf(fragrance.getQuantitySold()) + " pieces sold");
-        }
     }
 
     public interface ItemClickListener {
@@ -109,31 +96,16 @@ public class CatalogAdapter
 
     public class FragrancesViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
-        RelativeLayout rlFragranceItem;
-        TextView tvNumber;
-        TextView tvName;
-        TextView tvPrice;
-        TextView tvQuantityInStock;
-        TextView tvQuantitySold;
+
 
         public FragrancesViewHolder(View itemView) {
             super(itemView);
-            rlFragranceItem = itemView.findViewById(R.id.rl_fragranceItem);
-            tvNumber = itemView.findViewById(R.id.tv_number);
-            tvName = itemView.findViewById(R.id.tv_fragrance_name);
-            tvPrice = itemView.findViewById(R.id.tv_fragrance_price);
-            tvQuantityInStock = itemView.findViewById(R.id.tv_quantity_in_stock);
-            tvQuantitySold = itemView.findViewById(R.id.tv_quantity_sold);
-
-            itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View v) {
-            int elementId = filteredList.get(getAdapterPosition()).getId();
-            Log.d(TAG, "onClick: " + elementId);
-            mItemClickListener.onItemClickListener(elementId);
+
 
         }
 
@@ -151,20 +123,6 @@ public class CatalogAdapter
         protected FilterResults performFiltering(CharSequence constraint) {
             String filterString = constraint.toString().toLowerCase();
             FilterResults results = new FilterResults();
-            final List<FragranceEntry> list = unfilteredList;
-            int count = list.size();
-            final List<FragranceEntry> nlist = new ArrayList<>(count);
-
-            String filterableString;
-
-            for (int i = 0; i < count; i++) {
-                filterableString = list.get(i).getName().toLowerCase();
-                if (filterableString.contains(filterString.toLowerCase())) {
-                    nlist.add(list.get(i));
-                }
-            }
-            results.values = nlist;
-            results.count = nlist.size();
 
             return results;
         }
@@ -172,8 +130,7 @@ public class CatalogAdapter
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredList = (List<FragranceEntry>) results.values;
-            notifyDataSetChanged();
+
         }
     }
 

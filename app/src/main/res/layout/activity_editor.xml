@@ -125,46 +125,46 @@
         </RadioGroup>
     </LinearLayout>
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="start"-->
-        <!--android:text="What would you like to do? " />-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="What would you like to do? " />
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <!--<RadioGroup-->
-            <!--android:id="@+id/rg_editor_quantity_mode"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical">-->
+        <RadioGroup
+            android:id="@+id/rg_editor_quantity_mode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <!--<RadioButton-->
-                <!--android:id="@+id/rb_editor_do_naught"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/do_naught" />-->
+            <RadioButton
+                android:id="@+id/rb_editor_do_naught"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/do_naught" />
 
-            <!--<RadioButton-->
-                <!--android:id="@+id/rb_editor_add"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/add_to_stock" />-->
+            <RadioButton
+                android:id="@+id/rb_editor_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_to_stock" />
 
-            <!--<RadioButton-->
-                <!--android:id="@+id/rb_editor_sell"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/sell_from_stock" />-->
+            <RadioButton
+                android:id="@+id/rb_editor_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sell_from_stock" />
 
-        <!--</RadioGroup>-->
+        </RadioGroup>
 
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_save"
