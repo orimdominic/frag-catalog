@@ -256,7 +256,7 @@ public class CatalogActivity extends AppCompatActivity {
                 textToShare.append(fragrance.getName() + "\n");
                 textToShare.append(fragrance.getGenderString());
                 textToShare.append(",   ");
-                textToShare.append(fragrance.getPrice() + "\n");
+                textToShare.append(fragrance.getRet_price() + "\n");
                 textToShare.append("\n");
             }
             Log.d(TAG, "createSharableText: "+textToShare.toString());
@@ -265,7 +265,7 @@ public class CatalogActivity extends AppCompatActivity {
 //            Log.d(TAG, "createSharableText: notInclucingGender");
             for (FragranceEntry fragrance : selectedFragrances) {
                 textToShare.append(fragrance.getName() + "\n");
-                textToShare.append(fragrance.getPrice() + "\n");
+                textToShare.append(fragrance.getRet_price() + "\n");
                 textToShare.append("\n");
             }
             Log.d(TAG, "createSharableText: "+textToShare.toString());

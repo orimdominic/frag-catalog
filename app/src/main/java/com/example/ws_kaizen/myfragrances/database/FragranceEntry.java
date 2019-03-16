@@ -3,11 +3,8 @@ package com.example.ws_kaizen.myfragrances.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-
-import java.util.Date;
 
 @Entity(tableName = "fragrance")
 public class FragranceEntry {
@@ -16,7 +13,8 @@ public class FragranceEntry {
     @NonNull
     private int id;
     private String name;
-    private int price;
+    private int ret_price; // retail price
+    private int ws_price; // wholesale price
     @ColumnInfo(name = "quantity_in_stock")
     private int quantityInStock;
     @ColumnInfo(name = "quantity_sold")
@@ -25,22 +23,25 @@ public class FragranceEntry {
 
 
     @Ignore
-    public FragranceEntry(String name, int price, int quantityInStock, int quantitySold, int gender) {
+    public FragranceEntry(String name, int ret_price, int ws_price,
+                          int quantityInStock, int quantitySold, int gender) {
         this.name = name;
-        this.price = price;
+        this.ret_price = ret_price;
+        this.ws_price = ws_price;
         this.quantityInStock = quantityInStock;
         this.quantitySold = quantitySold;
         this.gender = gender;
     }
 
-    public FragranceEntry(int id, String name, int price, int quantityInStock, int quantitySold, int gender) {
+    public FragranceEntry(int id, String name, int ret_price, int ws_price,
+                          int quantityInStock, int quantitySold, int gender) {
         this.id = id;
         this.name = name;
-        this.price = price;
+        this.ret_price = ret_price;
+        this.ws_price = ws_price;
         this.quantityInStock = quantityInStock;
         this.quantitySold = quantitySold;
         this.gender = gender;
-
     }
 
     public void setId(int id) {
@@ -55,16 +56,24 @@ public class FragranceEntry {
         this.name = name;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setRet_price(int ret_price) {
+        this.ret_price = ret_price;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getPrice() {
-        return price;
+    public int getRet_price() {
+        return ret_price;
+    }
+
+    public int getWs_price() {
+        return ws_price;
+    }
+
+    public void setWs_price(int ws_price) {
+        this.ws_price = ws_price;
     }
 
     public int getQuantityInStock() {

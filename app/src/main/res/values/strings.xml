@@ -4,7 +4,8 @@
     <string name="title_activity_catalog">Fragrances Catalog</string>
     <string name="fragrance">Fragrance</string>
     <string name="hint_fragrance_name">Name</string>
-    <string name="hint_fragrance_price">Price</string>
+    <string name="hint_ret_price">Retail price</string>
+    <string name="hint_ws_price">Wholesale price</string>
     <string name="hint_search">Fragrance name</string>
     <string name="save">Save</string>
 
@@ -25,4 +26,6 @@
     <string name="share">Share</string>
     <string name="do_naught">Only edit</string>
     <string name="unisex">Unisex</string>
+    <string name="prefix_ret">RET:</string>
+    <string name="prefix_ws">WS:</string>
 </resources>

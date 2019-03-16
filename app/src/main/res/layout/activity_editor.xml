@@ -34,9 +34,15 @@
                 android:inputType="textCapWords" />
 
             <EditText
-                android:id="@+id/edit_fragrance_price"
+                android:id="@+id/edit_ret_price"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/hint_fragrance_price"
+                android:hint="@string/hint_ret_price"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edit_ws_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_ws_price"
                 android:inputType="number" />
         </LinearLayout>
     </LinearLayout>

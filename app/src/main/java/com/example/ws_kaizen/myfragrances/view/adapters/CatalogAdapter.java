@@ -1,19 +1,10 @@
 package com.example.ws_kaizen.myfragrances.view.adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -22,12 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ws_kaizen.myfragrances.R;
-import com.example.ws_kaizen.myfragrances.database.AppDatabase;
 import com.example.ws_kaizen.myfragrances.database.FragranceEntry;
-import com.example.ws_kaizen.myfragrances.utilities.AppExecutors;
-import com.example.ws_kaizen.myfragrances.view.activities.CatalogActivity;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +77,8 @@ public class CatalogAdapter
 
         holder.tvNumber.setText(String.valueOf(position + 1));
         holder.tvName.setText(fragrance.getName());
-        holder.tvPrice.setText(String.valueOf(fragrance.getPrice()));
+        holder.tvRetPrice.setText(mContext.getString(R.string.prefix_ret) + String.valueOf(fragrance.getRet_price()));
+        holder.tvWsPrice.setText(mContext.getString(R.string.prefix_ws) + String.valueOf(fragrance.getWs_price()));
         if (fragrance.getQuantityInStock() == 1) {
             holder.tvQuantityInStock.setText(String.valueOf(fragrance.getQuantityInStock()) + " piece in stock");
         } else {
@@ -112,7 +100,8 @@ public class CatalogAdapter
         RelativeLayout rlFragranceItem;
         TextView tvNumber;
         TextView tvName;
-        TextView tvPrice;
+        TextView tvRetPrice;
+        TextView tvWsPrice;
         TextView tvQuantityInStock;
         TextView tvQuantitySold;
 
@@ -121,12 +110,12 @@ public class CatalogAdapter
             rlFragranceItem = itemView.findViewById(R.id.rl_fragranceItem);
             tvNumber = itemView.findViewById(R.id.tv_number);
             tvName = itemView.findViewById(R.id.tv_fragrance_name);
-            tvPrice = itemView.findViewById(R.id.tv_fragrance_price);
+            tvRetPrice = itemView.findViewById(R.id.tv_fragrance_ret_price);
+            tvWsPrice = itemView.findViewById(R.id.tv_fragrance_ws_price);
             tvQuantityInStock = itemView.findViewById(R.id.tv_quantity_in_stock);
             tvQuantitySold = itemView.findViewById(R.id.tv_quantity_sold);
 
             itemView.setOnClickListener(this);
-
         }
 
         @Override

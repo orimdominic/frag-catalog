@@ -40,17 +40,6 @@
         tools:text="Creed Himalaya" />
 
     <TextView
-        android:id="@+id/tv_fragrance_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/tv_fragrance_gender"
-        android:layout_below="@+id/tv_fragrance_name"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        tools:text="2,500" />
-
-    <TextView
         android:id="@+id/tv_fragrance_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,6 +49,29 @@
         android:fontFamily="sans-serif"
         android:textAppearance="?android:textAppearanceSmall"
         tools:text="Male" />
+
+    <TextView
+        android:id="@+id/tv_fragrance_ret_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/tv_fragrance_gender"
+        android:layout_below="@+id/tv_fragrance_name"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:textAppearanceSmall"
+        tools:text="RET: 2,500" />
+
+    <TextView
+        android:id="@+id/tv_fragrance_ws_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/tv_fragrance_ret_price"
+        android:layout_below="@+id/tv_fragrance_name"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:textAppearanceSmall"
+        tools:text="WS: 2,500" />
+
 
     <TextView
         android:id="@+id/tv_quantity_in_stock"

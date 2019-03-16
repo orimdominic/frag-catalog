@@ -8,7 +8,6 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +27,7 @@ import com.example.ws_kaizen.myfragrances.view.view_models.EditorViewModelFactor
 public class EditorActivity extends AppCompatActivity {
     private static final String TAG = "EditorActivity";
 
-    private EditText etFragranceName, etFragrancePrice, etQuantity;
+    private EditText etFragranceName, etRetPrice, etWsPrice, etQuantity;
     private Button btnSave;
     private RadioGroup rgQuantityMode, rgGender;
     private RadioButton rbAdd, rbSell, rbDoNaught, rbMale, rbFemale, rbUnisex;
@@ -98,7 +97,8 @@ public class EditorActivity extends AppCompatActivity {
         }
 
         etFragranceName.setText(fragranceEntry.getName());
-        etFragrancePrice.setText(String.valueOf(fragranceEntry.getPrice()));
+        etRetPrice.setText(String.valueOf(fragranceEntry.getRet_price()));
+        etWsPrice.setText(String.valueOf(fragranceEntry.getWs_price()));
         etQuantity.setText(String.valueOf(fragranceEntry.getQuantityInStock()));
         if (fragranceEntry.getGender() == 1) {
             rgGender.check(R.id.rb_editor_male);
@@ -112,7 +112,8 @@ public class EditorActivity extends AppCompatActivity {
 
     private void instantiateViews() {
         etFragranceName = findViewById(R.id.edit_fragrance_name);
-        etFragrancePrice = findViewById(R.id.edit_fragrance_price);
+        etRetPrice = findViewById(R.id.edit_ret_price);
+        etWsPrice = findViewById(R.id.edit_ws_price);
         btnSave = findViewById(R.id.btn_save);
         etQuantity = findViewById(R.id.et_edit_fragrance_quantity);
 
@@ -145,7 +146,8 @@ public class EditorActivity extends AppCompatActivity {
 
         int quantity;
         String fragranceName = etFragranceName.getText().toString().trim();
-        int fragrancePrice = Integer.valueOf(etFragrancePrice.getText().toString());
+        int retPrice = Integer.valueOf(etRetPrice.getText().toString());
+        int wsPrice = Integer.valueOf(etWsPrice.getText().toString());
         int setQuantity = Integer.valueOf(etQuantity.getText().toString());
         int genderInt = getGenderInt(rgGender.getCheckedRadioButtonId());
 
@@ -155,28 +157,28 @@ public class EditorActivity extends AppCompatActivity {
             if (rbAdd.isChecked()) {
                 quantity = setQuantity;
                 fragrance =
-                        new FragranceEntry(fragranceName, fragrancePrice, quantity, initialQuantitySold, genderInt);
+                        new FragranceEntry(fragranceName, retPrice, wsPrice, quantity, initialQuantitySold, genderInt);
             } else if (rbSell.isChecked()) {
                 Toast.makeText(EditorActivity.this,
                         R.string.cannot_sell, Toast.LENGTH_SHORT).show();
                 return;
             } else if (rbDoNaught.isChecked()) {
                 fragrance =
-                        new FragranceEntry(fragranceName, fragrancePrice, setQuantity, initialQuantitySold, genderInt);
+                        new FragranceEntry(fragranceName, retPrice, wsPrice, setQuantity, initialQuantitySold, genderInt);
             }
         } else if (initialQuantity > 0) {
             if (rbAdd.isChecked()) {
                 quantity = initialQuantity + setQuantity;
                 fragrance =
-                        new FragranceEntry(fragranceName, fragrancePrice, quantity, initialQuantitySold, genderInt);
+                        new FragranceEntry(fragranceName, retPrice, wsPrice, quantity, initialQuantitySold, genderInt);
             } else if (rbSell.isChecked()) {
                 quantity = initialQuantity - setQuantity;
                 int newQuantitySold = initialQuantitySold + setQuantity;
                 fragrance =
-                        new FragranceEntry(fragranceName, fragrancePrice, quantity, newQuantitySold, genderInt);
+                        new FragranceEntry(fragranceName, retPrice, wsPrice, quantity, newQuantitySold, genderInt);
             } else if (rbDoNaught.isChecked()) {
                 fragrance =
-                        new FragranceEntry(fragranceName, fragrancePrice, setQuantity, initialQuantitySold, genderInt);
+                        new FragranceEntry(fragranceName, retPrice, wsPrice, setQuantity, initialQuantitySold, genderInt);
             }
         }
         final FragranceEntry mFragrance = fragrance;
@@ -201,15 +203,22 @@ public class EditorActivity extends AppCompatActivity {
             etFragranceName.setError("Required");
             return false;
         }
-        if (TextUtils.isEmpty(etFragrancePrice.getText().toString())) {
-            etFragrancePrice.setError("Required");
+        if (TextUtils.isEmpty(etRetPrice.getText().toString())) {
+            etRetPrice.setError("Required");
             return false;
         }
-        if (Integer.valueOf(etFragrancePrice.getText().toString()) <= 0) {
-            etFragrancePrice.setError("Invalid price");
+        if (Integer.valueOf(etRetPrice.getText().toString()) <= 0) {
+            etRetPrice.setError("Invalid price");
             return false;
         }
-
+        if (TextUtils.isEmpty(etWsPrice.getText().toString())) {
+            etWsPrice.setError("Required");
+            return false;
+        }
+        if (Integer.valueOf(etWsPrice.getText().toString()) <= 0) {
+            etWsPrice.setError("Invalid price");
+            return false;
+        }
         if (TextUtils.isEmpty(etQuantity.getText().toString())) {
             etQuantity.setError("Required");
             return false;
@@ -239,7 +248,8 @@ public class EditorActivity extends AppCompatActivity {
         }
 
         etFragranceName.setError(null);
-        etFragrancePrice.setError(null);
+        etRetPrice.setError(null);
+        etWsPrice.setError(null);
         etQuantity.setError(null);
         return true;
     }

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.ws_kaizen.myfragrances.R;
 import com.example.ws_kaizen.myfragrances.database.FragranceEntry;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +72,8 @@ public class FragranceAdapter extends ArrayAdapter<FragranceEntry> implements Fi
 
         TextView tvNumber = rowView.findViewById(R.id.tv_number);
         TextView tvName = rowView.findViewById(R.id.tv_fragrance_name);
-        TextView tvPrice = rowView.findViewById(R.id.tv_fragrance_price);
+        TextView tvRetPrice = rowView.findViewById(R.id.tv_fragrance_ret_price);
+        TextView tvWsPrice = rowView.findViewById(R.id.tv_fragrance_ws_price);
         TextView tvQuantityInStock = rowView.findViewById(R.id.tv_quantity_in_stock);
         TextView tvQuantitySold = rowView.findViewById(R.id.tv_quantity_sold);
         TextView tvGender = rowView.findViewById(R.id.tv_fragrance_gender);
@@ -81,7 +81,8 @@ public class FragranceAdapter extends ArrayAdapter<FragranceEntry> implements Fi
         tvNumber.setText(String.valueOf(position + 1));
         tvName.setText(fragrance.getName());
 
-        tvPrice.setText(String.valueOf(fragrance.getPrice()));
+        tvRetPrice.setText(String.valueOf("RET: ₦"+ NumberFormat.getInstance().format(fragrance.getRet_price()) + ","));
+        tvWsPrice.setText(String.valueOf("WS: ₦"+NumberFormat.getInstance().format(fragrance.getWs_price())));
         if (fragrance.getQuantityInStock() == 1) {
             tvQuantityInStock.setText(String.valueOf(fragrance.getQuantityInStock()) + " piece in stock");
         } else {
