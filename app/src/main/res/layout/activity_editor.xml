@@ -8,92 +8,56 @@
     android:padding="16dp"
     tools:context=".view.activities.EditorActivity">
 
-
+    <!-- Overview category -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Label -->
         <TextView
-            android:layout_width="wrap_content"
+            style="@style/CategoryStyle"
+            android:text="@string/fragrance" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/hint_fragrance_name" />
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
 
+            <EditText
+                android:id="@+id/edit_fragrance_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_fragrance_name"
+                android:inputType="textCapWords" />
 
-        <EditText
-            android:id="@+id/et_fragrance_name"
-            style="@style/EditorFieldStyle"
-            android:hint="@string/hint_fragrance_name"
-            android:inputType="number" />
+            <EditText
+                android:id="@+id/edit_ret_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_ret_price"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edit_ws_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_ws_price"
+                android:inputType="number" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/quantity" />
-
-
-        <EditText
-            android:id="@+id/et_fragrance_quantity"
-            style="@style/EditorFieldStyle"
-            android:hint="@string/quantity"
-            android:inputType="number" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hint_fragrance_ret_price" />
-
-
-        <EditText
-            android:id="@+id/et_fragrance_ret_price"
-            style="@style/EditorFieldStyle"
-            android:hint="@string/input_fragrance_ret_price"
-            android:inputType="number" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/input_fragrance_ws_price" />
-
-
-        <EditText
-            android:id="@+id/et_fragrance_ws_price"
-            style="@style/EditorFieldStyle"
-            android:hint="@string/input_fragrance_ws_price"
-            android:inputType="textCapWords" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:text="@string/input_fragrance_gender" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView
+            android:gravity="start"
+            style="@style/CategoryStyle"
+            android:text="Gender" />
 
         <RadioGroup
             android:id="@+id/rg_editor_gender"
@@ -125,11 +89,6 @@
         </RadioGroup>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:text="What would you like to do? " />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -163,7 +122,14 @@
 
         </RadioGroup>
 
-
+        <EditText
+            android:id="@+id/et_edit_fragrance_quantity"
+            style="@style/EditorFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/quantity"
+            android:inputType="number" />
     </LinearLayout>
 
     <Button

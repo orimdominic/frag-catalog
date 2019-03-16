@@ -6,12 +6,10 @@
 
 **The app allows the user to perform basic CRUD operations which include:**
 
-*	Creating  fragrances with the properties:
-	name, wholesale price, retail price, quantity in stock and gender
-*	Viewing a list of all the fragrances saved. The list shows the name, price, gender,
+*	Creating  fragrances with the properties name, ret_price, quantity in stock and gender
+*	Viewing a list of all the fragrances saved. The list shows the name, ret_price, gender,
 	quantity sold and quantity remaining in stock
-*	Updating fragrance properties such as name, wholesale price, 
-	retail price, quantity in stock and gender
+*	Updating fragrance properties such as name, ret_price, quantity sold, quantity remaining in stock and gender
 *	Delete fragrances.
 
 **The app also allows the user to **
@@ -30,6 +28,6 @@
 	This should be prevented.
 
 *	Improvement: Settings should be added for sorting fragrances by name, 
-	price, quantity sold and other properties.
+	ret_price, quantity sold and other properties.
 *	Improvement: The context menu could be attached to list items and not 
 	the Action Bar

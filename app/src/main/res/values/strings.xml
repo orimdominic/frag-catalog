@@ -4,17 +4,10 @@
     <string name="title_activity_catalog">Fragrances Catalog</string>
     <string name="fragrance">Fragrance</string>
     <string name="hint_fragrance_name">Name</string>
-    <string name="hint_fragrance_ret_price">Retail price</string>
-    <string name="hint_fragrance_ws_price">Wholesale price</string>
+    <string name="hint_ret_price">Retail price</string>
+    <string name="hint_ws_price">Wholesale price</string>
     <string name="hint_search">Fragrance name</string>
     <string name="save">Save</string>
-
-    <!-- Input fields -->
-    <string name="input_fragrance_name">Name</string>
-    <string name="input_fragrance_ret_price">Retail price</string>
-    <string name="input_fragrance_ws_price">Wholesale price</string>
-    <string name="input_fragrance_quantity">Quantity</string>
-    <string name="input_fragrance_gender">Select fragrance gender</string>
 
     <string name="editor">Edit fragrance</string>
     <string name="delete_dialog_msg">Delete this fragrance ?</string>
@@ -31,6 +24,8 @@
     <string name="select_all">Select All</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
-    <string name="do_naught">Edit only</string>
+    <string name="do_naught">Only edit</string>
     <string name="unisex">Unisex</string>
+    <string name="prefix_ret">RET:</string>
+    <string name="prefix_ws">WS:</string>
 </resources>
