@@ -126,6 +126,7 @@ public class CatalogActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.select_all:
+//                        isSelectedAll = true;
                         toggleSelectAllMenuItem(mode);
                         break;
                     case R.id.delete:
@@ -231,6 +232,7 @@ public class CatalogActivity extends AppCompatActivity {
                 .getQuantityString(R.plurals.plural_name, fragrancesToDelete.size(), fragrancesToDelete.size());
         Toast.makeText(CatalogActivity.this, message + " deleted", Toast.LENGTH_SHORT).show();
         fragrancesToDelete.clear();
+        isSelectedAll = false;
     }
 
     private void shouldIncludeGender(final ActionMode mode) {
@@ -300,6 +302,7 @@ public class CatalogActivity extends AppCompatActivity {
             CatalogActivity.this.startActivity(shareIntent);
         }
         selectedFragrances.clear();
+        isSelectedAll = false;
         mode.finish();
 
     }
