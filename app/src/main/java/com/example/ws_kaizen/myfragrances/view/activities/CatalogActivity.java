@@ -30,12 +30,15 @@ import com.example.ws_kaizen.myfragrances.utilities.AppExecutors;
 import com.example.ws_kaizen.myfragrances.view.adapters.FragranceAdapter;
 import com.example.ws_kaizen.myfragrances.view.view_models.CatalogViewModel;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CatalogActivity extends AppCompatActivity {
     private static final String TAG = "CatalogActivity";
+    private final int RETAIL_SALE = 0;
+    private final int WHOLESALE_SALE = 1;
 
     //    private RecyclerView rvFragrances;
     private FragranceAdapter lvAdapter;
@@ -129,7 +132,7 @@ public class CatalogActivity extends AppCompatActivity {
                         showDeleteConfirmationDialog(mode);
                         break;
                     case R.id.share:
-                        requestShareFormat(mode);
+                        shouldIncludeGender(mode);
 //                        createSharableText(mode);
                         break;
                 }
@@ -230,18 +233,20 @@ public class CatalogActivity extends AppCompatActivity {
         fragrancesToDelete.clear();
     }
 
-    private void requestShareFormat(final ActionMode mode) {
+    private void shouldIncludeGender(final ActionMode mode) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Include fragrance gender?");
         builder.setPositiveButton("Include", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                createSharableText(mode, true);
+//                createSharableText(mode, true);
+                setSaleType(mode, true);
             }
         });
         builder.setNegativeButton("Don't include", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                createSharableText(mode, false);
+//                createSharableText(mode, false);
+                setSaleType(mode, false);
             }
         });
         // Create and show the AlertDialog
@@ -249,31 +254,45 @@ public class CatalogActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void createSharableText(ActionMode mode, boolean includeGender) {
-        final StringBuilder textToShare = new StringBuilder();
-        if (includeGender) {
-            for (FragranceEntry fragrance : selectedFragrances) {
-                textToShare.append(fragrance.getName() + "\n");
-                textToShare.append(fragrance.getGenderString());
-                textToShare.append(",   ");
-                textToShare.append(fragrance.getRet_price() + "\n");
-                textToShare.append("\n");
+    private void setSaleType(final ActionMode mode, final boolean includeGender) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Set sale type as:");
+        builder.setPositiveButton("Retail", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                createSharableText(mode, includeGender, RETAIL_SALE);
             }
-            Log.d(TAG, "createSharableText: "+textToShare.toString());
+        });
+        builder.setNegativeButton("Wholesale", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                createSharableText(mode, includeGender, WHOLESALE_SALE);
+            }
+        });
+        // Create and show the AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
-        } else {
-//            Log.d(TAG, "createSharableText: notInclucingGender");
-            for (FragranceEntry fragrance : selectedFragrances) {
-                textToShare.append(fragrance.getName() + "\n");
-                textToShare.append(fragrance.getRet_price() + "\n");
-                textToShare.append("\n");
-            }
-            Log.d(TAG, "createSharableText: "+textToShare.toString());
+
+    private void createSharableText(ActionMode mode, boolean includeGender, int saleType) {
+        String textToShare = "";
+
+        if (includeGender && (saleType == RETAIL_SALE)) {
+            textToShare = shareRetailWithGender();
+            Log.d(TAG, "createSharableText: " + textToShare);
+        } else if (includeGender && (saleType == WHOLESALE_SALE)){
+            textToShare = shareWholesaleWithGender();
+            Log.d(TAG, "createSharableText: " + textToShare);
+        }else if (!includeGender && (saleType == RETAIL_SALE)){
+            textToShare = shareRetailWithoutGender();
+            Log.d(TAG, "createSharableText: " + textToShare);
+        }else if (!includeGender && (saleType == WHOLESALE_SALE)){
+            textToShare = shareWholesaleWithoutGender();
+            Log.d(TAG, "createSharableText: " + textToShare);
         }
 
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare.toString());
+        shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
         shareIntent.setType("text/plain");
 
         // Verify that the intent will resolve to an activity
@@ -283,6 +302,52 @@ public class CatalogActivity extends AppCompatActivity {
         selectedFragrances.clear();
         mode.finish();
 
+    }
+
+    private String shareRetailWithGender() {
+        final StringBuilder textToShare = new StringBuilder();
+        for (FragranceEntry fragrance : selectedFragrances) {
+            textToShare.append(fragrance.getName() + "\n");
+            textToShare.append(fragrance.getGenderString());
+            textToShare.append(",   ₦");
+            textToShare.append(NumberFormat.getInstance().format(fragrance.getRet_price()) + "\n");
+            textToShare.append("\n");
+        }
+        return textToShare.toString();
+    }
+
+    private String shareRetailWithoutGender() {
+        final StringBuilder textToShare = new StringBuilder();
+        for (FragranceEntry fragrance : selectedFragrances) {
+            textToShare.append(fragrance.getName());
+            textToShare.append(",   ₦");
+            textToShare.append(NumberFormat.getInstance().format(fragrance.getRet_price()) + "\n");
+            textToShare.append("\n");
+        }
+        return textToShare.toString();
+    }
+
+    private String shareWholesaleWithGender() {
+        final StringBuilder textToShare = new StringBuilder();
+        for (FragranceEntry fragrance : selectedFragrances) {
+            textToShare.append(fragrance.getName() + "\n");
+            textToShare.append(fragrance.getGenderString());
+            textToShare.append(",   ₦");
+            textToShare.append(NumberFormat.getInstance().format(fragrance.getWs_price()) + "\n");
+            textToShare.append("\n");
+        }
+        return textToShare.toString();
+    }
+
+    private String shareWholesaleWithoutGender() {
+        final StringBuilder textToShare = new StringBuilder();
+        for (FragranceEntry fragrance : selectedFragrances) {
+            textToShare.append(fragrance.getName());
+            textToShare.append(",   ₦");
+            textToShare.append(NumberFormat.getInstance().format(fragrance.getWs_price()) + "\n");
+            textToShare.append("\n");
+        }
+        return textToShare.toString();
     }
 
     @Override

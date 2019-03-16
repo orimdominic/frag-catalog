@@ -81,6 +81,7 @@ public class FragranceAdapter extends ArrayAdapter<FragranceEntry> implements Fi
         tvNumber.setText(String.valueOf(position + 1));
         tvName.setText(fragrance.getName());
 
+        // Not best practice.. Change soon
         tvRetPrice.setText(String.valueOf("RET: ₦"+ NumberFormat.getInstance().format(fragrance.getRet_price()) + ","));
         tvWsPrice.setText(String.valueOf("WS: ₦"+NumberFormat.getInstance().format(fragrance.getWs_price())));
         if (fragrance.getQuantityInStock() == 1) {
